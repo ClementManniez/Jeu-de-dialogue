@@ -1,0 +1,3 @@
+function bateau(){
+	alert("bateau");
+}
