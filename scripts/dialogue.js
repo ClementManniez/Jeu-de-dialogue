@@ -119,14 +119,16 @@ function reponse(idBouton){
 	//chargement réplique suivante
 	
 	//var etatJson = "e".concat(etat);
-	if (replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson]!== undefined){
 
+	//Vérification : l'état actuel est il dans la liste d'etat qui influence les successeurs de cette réplique
+	if (replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson]!== undefined){
+		//si oui changement de l'etat
 		if(replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][1] !== undefined){
 			this.etat = replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][1];
 		}
 		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][0] ;
 	}else{
-
+	//même chose avec le successeur par défaut
 		if(replique.Repliques[repliqueCourante].listechoix[idBouton].successeur[1] !== undefined){
 				this.etat = replique.Repliques[repliqueCourante].listechoix[idBouton].successeur[1];
 			}
@@ -141,6 +143,24 @@ function reponse(idBouton){
 
 
 }
+//Détermine le successeur du premier message, en fonction de l'état
+function premierMessage(){
+	//Vérification : l'état actuel est il dans la liste d'etat qui influence les successeurs de cette réplique
+	if (replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson]!== undefined){
+		//si oui changement de l'etat
+		if(replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][1] !== undefined){
+			this.etat = replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][1];
+		}
+		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][0] ;
+	}else{
+	//même chose avec le successeur par défaut
+		if(replique.Repliques[repliqueCourante].listechoix[0].successeur[1] !== undefined){
+				this.etat = replique.Repliques[repliqueCourante].listechoix[0].successeur[1];
+			}
+
+		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[0].successeur[0];
+	} 
+}
 
 function showStuff(id) {
     document.getElementById(id).style.display = 'none';
@@ -150,6 +170,7 @@ function showStuff(id) {
 function init(fichier){
 	var chemin  = dossierJson + fichier;
 	readTextFile(chemin);
+	premierMessage();
 	loadReplique(repliqueCourante);
 	loadChoix(repliqueCourante);
 }

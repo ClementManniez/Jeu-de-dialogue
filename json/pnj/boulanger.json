@@ -1,89 +1,103 @@
 {
-   "Repliques":[
-      {
-         "listechoix":[
+  "Repliques": [
+    {
+      "listechoix": [
+        {
+          "choix": "",
+          "successeur": [
+            "1"
+          ],
+          "etat": [
             {
-               "choix":"Bonjour boulanger !",
-               "successeur":["1","2"],
-               "etat":[
-                  {
-                     "e1":"3","e2":"5"
-                  }
-               ]
-            },
-            {
-               "choix":"Qui êtes vous ?",
-               "successeur":"2",
-               "etat":[
-                  {
-                  }
-               ]
+              "e1": "3",
+              "e2": "5"
             }
-         ],
-         "texte":"Bonjour voyageur"
-      },
-      {
-         "listechoix":[
+          ]
+        }
+      ],
+      "texte": ""
+    },
+    {
+      "listechoix": [
+        {
+          "choix": "Bonjour boulanger !",
+          "successeur": [
+            "2",
+            "3"
+          ],
+          "etat": [
             {
-               "choix":"Perpignan",
-               "successeur":"Repliques[1]",
-               "etat":[
-                  {
-                  }
-               ]
-            },
-            {
-               "choix":"Bourg Palette",
-               "successeur":"Repliques[2]",
-               "etat":[
-                  {
-                  }
-               ]
+              "e1": "4",
+              "e2": "6"
             }
-         ],
-         "texte":"D'où viens-tu ?"
-      },
-      {
-         "listechoix":[
-            {
-               "choix":"eh bien d accord",
-               "successeur":"Repliques[1]",
-               "etat":[
-                  {
-                  }
-               ]
-            },
-            {
-               "choix":"Mais oui c est vrai ! ",
-               "successeur":"Repliques[2]",
-               "etat":[
-                  {
-                  }
-               ]
-            }
-         ],
-         "texte":"Enfin ! Je suis le boulanger !"
-      },
-      {
-         "listechoix":[
-            {
-               "choix":"D'accord, au revoir.",
-               "successeur":"",
-               "etat":[
-                  {
-                  }
-               ]
-            },
-            {
-               "choix":"Je refuse !",
-               "successeur":"",
-               "etat":[
-                  {
-                  }
-               ]
-            }
-         ],
-         "texte":"Va-t'en."
-      }
-   ]
+          ]
+        },
+        {
+          "choix": "Qui êtes vous ?",
+          "successeur": "2",
+          "etat": [
+            {}
+          ]
+        }
+      ],
+      "texte": "Bonjour voyageur"
+    },
+    {
+      "listechoix": [
+        {
+          "choix": "Perpignan",
+          "successeur": "Repliques[1]",
+          "etat": [
+            {}
+          ]
+        },
+        {
+          "choix": "Bourg Palette",
+          "successeur": "Repliques[2]",
+          "etat": [
+            {}
+          ]
+        }
+      ],
+      "texte": "D'où viens-tu ?"
+    },
+    {
+      "listechoix": [
+        {
+          "choix": "eh bien d accord",
+          "successeur": "Repliques[1]",
+          "etat": [
+            {}
+          ]
+        },
+        {
+          "choix": "Mais oui c est vrai ! ",
+          "successeur": "Repliques[2]",
+          "etat": [
+            {}
+          ]
+        }
+      ],
+      "texte": "Enfin ! Je suis le boulanger !"
+    },
+    {
+      "listechoix": [
+        {
+          "choix": "D'accord, au revoir.",
+          "successeur": "",
+          "etat": [
+            {}
+          ]
+        },
+        {
+          "choix": "Je refuse !",
+          "successeur": "",
+          "etat": [
+            {}
+          ]
+        }
+      ],
+      "texte": "Va-t'en."
+    }
+  ]
 }
