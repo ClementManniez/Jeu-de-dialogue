@@ -1,6 +1,7 @@
 
 var dossierJson = "json/pnj/";
 var replique = "";
+var dialogueCourant = "";
 
 function readTextFile(file)
 {
@@ -126,6 +127,7 @@ function reponse(idBouton){
 		if(replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][1] !== undefined){
 			this.etat = replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][1];
 		}
+
 		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[idBouton].etat[0][etatJson][0] ;
 	}else{
 	//même chose avec le successeur par défaut
@@ -139,26 +141,30 @@ function reponse(idBouton){
 	zoneMsg = document.getElementById("messages");
 	zoneMsg.innerHTML = zoneMsg.innerHTML + " <div  draggable=\"true\" ondragstart=\"drag(event)\" id=\"typing\"><img src=\"typing.gif\" height=\"42\" ></img></div>";
 
-	setTimeout(delaiReponse, 2000);
-
+	if (repliqueCourante==="x"){
+		fermerDialogue(dialogueCourant);
+		afficherScene();
+	}else{
+		setTimeout(delaiReponse, 2000);
+	}
 
 }
 //Détermine le successeur du premier message, en fonction de l'état
 function premierMessage(){
 	//Vérification : l'état actuel est il dans la liste d'etat qui influence les successeurs de cette réplique
-	if (replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson]!== undefined){
+	if (replique.Repliques[0].listechoix[0].etat[0][etatJson]!== undefined){
 		//si oui changement de l'etat
-		if(replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][1] !== undefined){
-			this.etat = replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][1];
+		if(replique.Repliques[0].listechoix[0].etat[0][etatJson][1] !== undefined){
+			this.etat = replique.Repliques[0].listechoix[0].etat[0][etatJson][1];
 		}
-		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[0].etat[0][etatJson][0] ;
+		repliqueCourante = replique.Repliques[0].listechoix[0].etat[0][etatJson][0] ;
 	}else{
 	//même chose avec le successeur par défaut
-		if(replique.Repliques[repliqueCourante].listechoix[0].successeur[1] !== undefined){
-				this.etat = replique.Repliques[repliqueCourante].listechoix[0].successeur[1];
+		if(replique.Repliques[0].listechoix[0].successeur[1] !== undefined){
+				this.etat = replique.Repliques[0].listechoix[0].successeur[1];
 			}
 
-		repliqueCourante = replique.Repliques[repliqueCourante].listechoix[0].successeur[0];
+		repliqueCourante = replique.Repliques[0].listechoix[0].successeur[0];
 	} 
 }
 
@@ -181,7 +187,7 @@ function test(){
 }
 
 function ouvrirDialogue(nom,fichier){
-
+	dialogueCourant = "dialogue" + nom ;
 	//ajout de la fenetre de dialogue
 	var strVar="";
 		strVar += "		<div class=\"fenetre\" id = \"dialogue"+nom+"\">";
@@ -202,8 +208,11 @@ function ouvrirDialogue(nom,fichier){
 		strVar += "";
 		strVar += "		<\/div>";
 
-	divDialoque = document.getElementById("divDialogue");
-	divDialoque.innerHTML = divDialoque.innerHTML + strVar;
+	divDialogue = document.getElementById("divDialogue");
+	divDialogue.innerHTML = divDialogue.innerHTML + strVar;
+
+	//affichage de du div
+	divDialogue.style.visibility = "visible";
 
 	//ajout de l'inventaire
 	var strInv="";
@@ -211,13 +220,14 @@ function ouvrirDialogue(nom,fichier){
 		strInv += "			Inventaire : ";
 		strInv += "		<\/div>";
 
-	divDialoque.innerHTML = divDialoque.innerHTML + strInv;
+	divDialogue.innerHTML = divDialogue.innerHTML + strInv;
 
 	init(fichier);
 }
 
-function fermerDialogue(nom){
-	var idDialogue = "dialogue" + nom;
-	var dialogue = document.getElementById(idDialogue);
-	dialogue.parentNode.removeChild(dialogue);
+function fermerDialogue(id){
+	var dialogue = document.getElementById("divDialogue");
+	//dialogue.parentNode.removeChild(dialogue);
+	dialogue.innerHTML = "";
+	dialogue.style.visibility = "collapse";
 }

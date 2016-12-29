@@ -14,3 +14,9 @@ function loadPnj(nom, fichier){
 	  	ouvrirDialogue(nom,fichier);
 	});
 }
+
+function afficherScene(){
+	require(["scene"],function(scene){
+		retourScene();
+	})
+}

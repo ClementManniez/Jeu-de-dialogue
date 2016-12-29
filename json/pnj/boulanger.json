@@ -9,7 +9,6 @@
           ],
           "etat": [
             {
-              "e1": "3",
               "e2": "5"
             }
           ]
@@ -84,7 +83,7 @@
       "listechoix": [
         {
           "choix": "D'accord, au revoir.",
-          "successeur": "",
+          "successeur": "x",
           "etat": [
             {}
           ]
