@@ -2,6 +2,7 @@
 var dossierJson = "json/pnj/";
 var replique = "";
 var dialogueCourant = "";
+var nomPnj;
 
 function readTextFile(file)
 {
@@ -186,8 +187,10 @@ function test(){
 	echo("toto");
 }
 
-function ouvrirDialogue(nom,fichier){
+function ouvrirDialogue(nom,fichier, sauvegardePresente){
 	dialogueCourant = "dialogue" + nom ;
+	nomPnj = nom; 
+
 	//ajout de la fenetre de dialogue
 	var strVar="";
 		strVar += "		<div class=\"fenetre\" id = \"dialogue"+nom+"\">";
@@ -222,12 +225,27 @@ function ouvrirDialogue(nom,fichier){
 
 	divDialogue.innerHTML = divDialogue.innerHTML + strInv;
 
+	if (sauvegardePresente){
+		console.log("toto");
+		document.getElementById("inventaire").innerHTML = tabPnj[pnjPresent(nomPnj)].inventaire;
+		etat = tabPnj[pnjPresent(nomPnj)].etat;
+	}
+		
+
+
 	init(fichier);
 }
 
 function fermerDialogue(id){
+	sauvegarde();
 	var dialogue = document.getElementById("divDialogue");
 	//dialogue.parentNode.removeChild(dialogue);
 	dialogue.innerHTML = "";
 	dialogue.style.visibility = "collapse";
+}
+
+function sauvegarde(){
+	var inventaireHtml = document.getElementById("inventaire").innerHTML;
+	tabPnj[pnjPresent(nomPnj)].inventaire = inventaireHtml;
+	tabPnj[pnjPresent(nomPnj)].etat = etat;
 }

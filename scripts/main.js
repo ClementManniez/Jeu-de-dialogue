@@ -1,4 +1,12 @@
 var sceneCourante = "";
+var testouille = "bruuuuh";
+var tabPnj = [];
+
+var Personnage = function(nom,inventaire,etat){
+	this.nom = nom;
+	this.inventaire = inventaire;
+	this.etat = etat;
+};
 
 require(["scene"],function(scene){
 	ouvrirScene("Place Marchande","place.json")
@@ -9,9 +17,16 @@ require(["dialogue"],function(){
 });*/
 
 function loadPnj(nom, fichier){
+
+	if (pnjPresent(nom)==-1){
+		tabPnj.push(new Personnage(nom,"",0));
+		sauvegardePresente = false;
+	} else {
+		sauvegardePresente = true;
+	}
 	require(["dialogue","scene"],function(dialogue,scene){
 		reduireScene();
-	  	ouvrirDialogue(nom,fichier);
+	  	ouvrirDialogue(nom,fichier,sauvegardePresente);
 	});
 }
 
@@ -20,3 +35,17 @@ function afficherScene(){
 		retourScene();
 	})
 }
+
+function pnjPresent(obj) {
+    var i;
+    for (i = 0; i < tabPnj.length; i++) {
+        if (tabPnj[i].nom !== undefined && tabPnj[i].nom === obj) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
+//tabPnj.push(new Personnage("bouh","",0));
