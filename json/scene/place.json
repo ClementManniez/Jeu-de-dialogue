@@ -2,5 +2,6 @@
   "nom": "Place Marchande",
   "listePnj": [
   {"nom":"Boulanger","fichier":"boulanger.json"}
+  {"nom":"Boucher","fichier":"boucher.json"}
   ]
 }
