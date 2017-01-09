@@ -4,12 +4,9 @@
       "listechoix": [
         {
           "choix": "",
-          "successeur": [
-            "1"
-          ],
+          "successeur": "1",
           "etat": [
             {
-              "e2": "5"
             }
           ]
         }
