@@ -3,6 +3,21 @@
     {
       "listechoix": [
         {
+          "choix": "",
+          "successeur": [
+            "1"
+          ],
+          "etat": [
+            {
+              "e2": "5"
+            }
+          ]
+        }
+      ],
+      "texte": ""
+    },
+      "listechoix": [
+        {
           "choix": "Vous avez l'air énervé...?",
           "successeur": [
             "2"
