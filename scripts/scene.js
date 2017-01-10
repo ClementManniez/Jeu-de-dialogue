@@ -34,7 +34,8 @@ function ouvrirScene(nom,fichier){
 	var strVar="";
 	strVar += "		<div class = \"scene\" id=\"scene"+nom+"\">";
 	strVar += "			<div class = \"bandeau\" >";
-	strVar += "				<h3 id=\"etatbandeau\">"+nom+"<\/h3>";
+	strVar += "				<h3 id=\"etatbandeau\">"+nom+"<span onclick =\"fermerScene(sceneCourante)\">      [X]<\/span><\/h3>";
+	strVar += "				";	
 	strVar += "			<\/div>";
 	strVar += "			<div id =\"listePnj\" >";
 	strVar += "				";
@@ -59,4 +60,17 @@ function reduireScene(){
 
 function retourScene(){
 	document.getElementById(sceneCourante).style.visibility = "visible"
+}
+
+function fermerScene(nom){
+	var aSuppr = document.getElementById(nom);
+	/*
+	aSuppr.innerHTML = "";
+	aSuppr.style.visibility = "collapse";
+	*/
+	aSuppr.parentNode.removeChild(aSuppr);
+	afficherMenu();
+
+	
+
 }

@@ -242,7 +242,8 @@ function ouvrirDialogue(nom,fichier, sauvegardePresente){
 	var strInv="";
 		strInv += "		<div  draggable=\"false\" id=\"contradiction\" class = \"droppable\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">";
 		strInv += "		<div id=\"vies\" ><\/div>";
-		strInv += "			<button onclick=\"contradiction()\" >Contradiction !<\/button>";
+		strInv += "			<button onclick=\"contradiction()\" >Objection !<\/button>";
+		strInv += "			<button onclick=\"resetContradiction()\" >annuler<\/button>";		
 		strInv += "		<\/div>";
 		
 
@@ -295,8 +296,8 @@ var cptrate = 3;
 
 function contradiction(){
 	divContradiction = document.getElementById("contradiction");
-	elementA = divContradiction.children[2].id;
-	elementB = divContradiction.children[3].id;
+	elementA = divContradiction.children[3].id;
+	elementB = divContradiction.children[4].id;
 
 	elementA = elementA.split("replique", 2)[1];
 	elementB = elementB.split("replique", 2)[1];
@@ -316,9 +317,16 @@ function contradiction(){
 
 	
 	//suppression des répliques
-	divContradiction.children[2].parentNode.removeChild(divContradiction.children[2]);
-	divContradiction.children[2].parentNode.removeChild(divContradiction.children[2]);
+	divContradiction.children[3].parentNode.removeChild(divContradiction.children[3]);
+	divContradiction.children[3].parentNode.removeChild(divContradiction.children[3]);
 	
+}
+
+function resetContradiction(){
+	divContradiction = document.getElementById("contradiction");
+	//suppression des répliques
+	divContradiction.children[3].parentNode.removeChild(divContradiction.children[3]);
+	divContradiction.children[3].parentNode.removeChild(divContradiction.children[3]);
 }
 
 function affichervie(){
