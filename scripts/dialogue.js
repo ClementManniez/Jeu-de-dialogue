@@ -4,6 +4,8 @@ var replique = "";
 var dialogueCourant = "";
 var nomPnj;
 
+var nbdiv = 0;
+
 function readTextFile(file)
 {
     var rawFile = new XMLHttpRequest();
@@ -40,6 +42,8 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("div", ev.target.id);
+
+
 }
 
 function drop(ev) {
@@ -230,8 +234,30 @@ function ouvrirDialogue(nom,fichier, sauvegardePresente){
 		document.getElementById("inventaire").innerHTML = tabPnj[pnjPresent(nomPnj)].inventaire;
 		etat = tabPnj[pnjPresent(nomPnj)].etat;
 	}
+
+		
+	//ajout contradiction box
+
+	
+	var strInv="";
+		strInv += "		<div  draggable=\"false\" id=\"contradiction\" class = \"droppable\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">";
+		strInv += "		<div id=\"vies\" ><\/div>";
+		strInv += "			<button onclick=\"contradiction()\" >Contradiction !<\/button>";
+		strInv += "		<\/div>";
 		
 
+	divDialogue.innerHTML = divDialogue.innerHTML + strInv;
+	
+	affichervie();
+
+	if (sauvegardePresente){
+		console.log("toto");
+		document.getElementById("contradiction").innerHTML = tabPnj[pnjPresent(nomPnj)].contradiction;
+		etat = tabPnj[pnjPresent(nomPnj)].etat;
+
+	nbdiv++;
+	
+	}
 
 	init(fichier);
 }
@@ -246,6 +272,63 @@ function fermerDialogue(id){
 
 function sauvegarde(){
 	var inventaireHtml = document.getElementById("inventaire").innerHTML;
+	var contradictionHtml = document.getElementById("contradiction").innerHTML;
 	tabPnj[pnjPresent(nomPnj)].inventaire = inventaireHtml;
+	tabPnj[pnjPresent(nomPnj)].contradiction = contradictionHtml;
 	tabPnj[pnjPresent(nomPnj)].etat = etat;
 }
+
+function contredit(a,b){
+	var contredit = false;
+	i=0;
+	while (i < replique.contradiction.length) {
+		if (replique.contradiction[0][a] === b || replique.contradiction[0][b] === a){
+			contredit = true;
+		}
+		i++;
+	}
+
+	return contredit;
+}
+
+var cptrate = 3;
+
+function contradiction(){
+	divContradiction = document.getElementById("contradiction");
+	elementA = divContradiction.children[2].id;
+	elementB = divContradiction.children[3].id;
+
+	elementA = elementA.split("replique", 2)[1];
+	elementB = elementB.split("replique", 2)[1];
+
+	resultat =  contredit(elementA,elementB);
+
+	if (resultat){
+		alert("Bien joué");
+	}else{
+		alert("C'est faux !");
+		cptrate--;
+		affichervie();
+		if (cptrate === 0){
+			alert("Vous avez perdu.");
+		}
+	}
+
+	
+	//suppression des répliques
+	divContradiction.children[2].parentNode.removeChild(divContradiction.children[2]);
+	divContradiction.children[2].parentNode.removeChild(divContradiction.children[2]);
+	
+}
+
+function affichervie(){
+	divVies = document.getElementById("vies");
+
+	strVie ="Vies : ";
+
+	for( i=0; i < cptrate;i++){
+		strVie += " ♥ ";
+	}
+
+	divVies.innerHTML = strVie;
+} 

@@ -96,7 +96,7 @@
           ]
         }
       ],
-      "texte": "Encore un satané gamin j'imagine."
+      "texte": "Encore un satané gamin j'imagine. Il y a souvent un gosse qui traîne autour de ma voiture, du coup je ne vais pas le gêner pendant le travail."
     },
 	
 	{
@@ -119,5 +119,6 @@
       ],
       "texte": "Derrière la voiture ? Je regarde fréquemment, il n'y a rien derrière ! Vous n'allez pas oser m'accuser de perdre moi-même mes produits quand même."
     }
-  ]
+  ],
+  "contradiction" : [{"4":"5"}]
 }

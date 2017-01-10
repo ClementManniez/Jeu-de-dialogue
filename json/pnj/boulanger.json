@@ -33,7 +33,7 @@
         },
         {
           "choix": "Qui êtes vous ?",
-          "successeur": "2",
+          "successeur": "3",
           "etat": [
             {}
           ]
@@ -98,5 +98,6 @@
       ],
       "texte": "Va-t'en."
     }
-  ]
+  ],
+"contradiction" : [{"1":"3"},{"2":"3"}]
 }

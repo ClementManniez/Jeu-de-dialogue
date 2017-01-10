@@ -1,8 +1,8 @@
 var sceneCourante = "";
-var testouille = "bruuuuh";
+var testouille = "tg clement";
 var tabPnj = [];
 
-var Personnage = function(nom,inventaire,etat){
+var Personnage = function(nom,inventaire,etat,contradiction){
 	this.nom = nom;
 	this.inventaire = inventaire;
 	this.etat = etat;
@@ -19,7 +19,7 @@ require(["dialogue"],function(){
 function loadPnj(nom, fichier){
 
 	if (pnjPresent(nom)==-1){
-		tabPnj.push(new Personnage(nom,"",0));
+		tabPnj.push(new Personnage(nom,"",0,""));
 		sauvegardePresente = false;
 	} else {
 		sauvegardePresente = true;
@@ -49,3 +49,4 @@ function pnjPresent(obj) {
 
 
 //tabPnj.push(new Personnage("bouh","",0));
+

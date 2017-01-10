@@ -74,6 +74,13 @@
 
 }
 
+#contradiction{
+	height: 400px;
+	width: 400px;
+	background-color: rgb(200,100,100);
+	margin-top: 70px;	
+}
+
 body {
 	display: flex;
 }
